@@ -1,0 +1,17 @@
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Service.deps.json
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Service.dll
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Service.pdb
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Data.dll
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Domain.dll
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Data.pdb
+F:\SpaManagement\SpaManagement.Service\bin\Debug\net6.0\SpaManagement.Domain.pdb
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.csproj.AssemblyReference.cache
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.GeneratedMSBuildEditorConfig.editorconfig
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.AssemblyInfoInputs.cache
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.AssemblyInfo.cs
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.csproj.CoreCompileInputs.cache
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.csproj.CopyComplete
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.dll
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\refint\SpaManagement.Service.dll
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\SpaManagement.Service.pdb
+F:\SpaManagement\SpaManagement.Service\obj\Debug\net6.0\ref\SpaManagement.Service.dll

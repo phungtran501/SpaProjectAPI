@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SpaManagement.props" />
+</Project>

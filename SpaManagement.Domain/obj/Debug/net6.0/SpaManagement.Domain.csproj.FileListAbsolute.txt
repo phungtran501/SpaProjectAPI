@@ -1,0 +1,12 @@
+F:\SpaManagement\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.deps.json
+F:\SpaManagement\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.dll
+F:\SpaManagement\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.pdb
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.csproj.AssemblyReference.cache
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.AssemblyInfoInputs.cache
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.AssemblyInfo.cs
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.csproj.CoreCompileInputs.cache
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.dll
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\refint\SpaManagement.Domain.dll
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.pdb
+F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\ref\SpaManagement.Domain.dll
