@@ -15,8 +15,6 @@ namespace SpaManagement.Data
         Repository<Appointment> _repositoryAppointment;
         Repository<AppointmentPlanDetail> _repositoryAppointmentPlanDetail;
         Repository<AppointmentProductDetail> _repositoryAppointmentProductDetail;
-        Repository<Customer> _repositoryUserCustomer;
-        Repository<Employee> _repositoryEmployee;
         Repository<Plan> _repositoryPlan;
         Repository<PlanDetail> _repositoryPlanDetail;
         Repository<Product> _repositoryProduct;
@@ -34,11 +32,6 @@ namespace SpaManagement.Data
         public Repository<AppointmentPlanDetail> AppointmentPlanDetailRepository => _repositoryAppointmentPlanDetail ??= new Repository<AppointmentPlanDetail>(_spaManagementContext);
 
         public Repository<AppointmentProductDetail> AppointmentProductDetailRepository => _repositoryAppointmentProductDetail ??= new Repository<AppointmentProductDetail>(_spaManagementContext);
-
-        public Repository<Customer> CustomerRepository => _repositoryUserCustomer ??= new Repository<Customer>(_spaManagementContext);
-
-        public Repository<Employee> EmployeeRepository => _repositoryEmployee ??= new Repository<Employee>(_spaManagementContext);
-
 
         public Repository<Plan> PlanRepository => _repositoryPlan ??= new Repository<Plan>(_spaManagementContext);
 

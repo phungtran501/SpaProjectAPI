@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SpaManagement.Domain.Entities;
 using SpaManagement.DTOs;
-using SpaManagement.Service;
+using SpaManagement.Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -110,7 +110,7 @@ namespace SpaManagement.Authentication.Service
             if (identity.FindFirst("Username") == null)
             {
                 string username = identity.FindFirst("Username").Value;
-                var user = await _customerService.FindByUsername(username);
+                var user = await _userManager.FindByNameAsync(username);
 
                 if (user == null)
                 {

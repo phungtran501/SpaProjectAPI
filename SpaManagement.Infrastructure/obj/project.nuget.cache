@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6YERLW0J5ByPAWvufcjvQZxC/pVIkWJ+VXTvevJinoGS7NdDihXgGtZAuJeXGen+QO+KAOPsP+HSfTgaHWv1cg==",
+  "dgSpecHash": "bAkQbH8l1eppbnGILPiZJ6ehzcGR+fnQvzqzX8qNCrzBhOdmrHdLTWYLR+niOWLddtUJxqPhapwO+MR3EukfqA==",
   "success": true,
-  "projectFilePath": "F:\\SpaManagement\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
+  "projectFilePath": "F:\\SpaProjectAPI\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

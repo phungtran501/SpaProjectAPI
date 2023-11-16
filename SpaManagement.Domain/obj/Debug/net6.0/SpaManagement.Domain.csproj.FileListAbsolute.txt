@@ -10,3 +10,15 @@ F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.dll
 F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\refint\SpaManagement.Domain.dll
 F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.pdb
 F:\SpaManagement\SpaManagement.Domain\obj\Debug\net6.0\ref\SpaManagement.Domain.dll
+F:\SpaProjectAPI\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.deps.json
+F:\SpaProjectAPI\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.dll
+F:\SpaProjectAPI\SpaManagement.Domain\bin\Debug\net6.0\SpaManagement.Domain.pdb
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.csproj.AssemblyReference.cache
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.AssemblyInfoInputs.cache
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.AssemblyInfo.cs
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.csproj.CoreCompileInputs.cache
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.dll
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\refint\SpaManagement.Domain.dll
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\SpaManagement.Domain.pdb
+F:\SpaProjectAPI\SpaManagement.Domain\obj\Debug\net6.0\ref\SpaManagement.Domain.dll

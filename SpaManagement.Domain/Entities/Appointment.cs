@@ -10,10 +10,10 @@ namespace SpaManagement.Domain.Entities
     public class Appointment: BaseEntity
     {
         public string? Note { get; set; }
-        public DateTime CreateOn { get; set; }
-        public string? Status { get; set; }
-        public int CustomerId { get; set; }
-        [ForeignKey(nameof(CustomerId))]
-        public Customer Customer { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public short Status { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

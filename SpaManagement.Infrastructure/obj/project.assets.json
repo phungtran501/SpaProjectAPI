@@ -2980,11 +2980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SpaManagement\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
+      "projectUniqueName": "F:\\SpaProjectAPI\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
       "projectName": "SpaManagement.Infrastructure",
-      "projectPath": "F:\\SpaManagement\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
+      "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Infrastructure\\SpaManagement.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\JINLONG_PC\\.nuget\\packages\\",
-      "outputPath": "F:\\SpaManagement\\SpaManagement.Infrastructure\\obj\\",
+      "outputPath": "F:\\SpaProjectAPI\\SpaManagement.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JINLONG_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3001,14 +3001,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\SpaManagement\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj": {
-              "projectPath": "F:\\SpaManagement\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj"
+            "F:\\SpaProjectAPI\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj": {
+              "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj"
             },
-            "F:\\SpaManagement\\SpaManagement.Data\\SpaManagement.Data.csproj": {
-              "projectPath": "F:\\SpaManagement\\SpaManagement.Data\\SpaManagement.Data.csproj"
+            "F:\\SpaProjectAPI\\SpaManagement.Data\\SpaManagement.Data.csproj": {
+              "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Data\\SpaManagement.Data.csproj"
             },
-            "F:\\SpaManagement\\SpaManagement.Service\\SpaManagement.Service.csproj": {
-              "projectPath": "F:\\SpaManagement\\SpaManagement.Service\\SpaManagement.Service.csproj"
+            "F:\\SpaProjectAPI\\SpaManagement.Service\\SpaManagement.Service.csproj": {
+              "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Service\\SpaManagement.Service.csproj"
             }
           }
         }

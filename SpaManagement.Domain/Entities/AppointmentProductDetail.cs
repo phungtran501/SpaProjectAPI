@@ -9,7 +9,7 @@ namespace SpaManagement.Domain.Entities
 {
     public class AppointmentProductDetail: BaseEntity
     {
-        public string Price { get; set; }
+        public double Price { get; set; }
         public bool Available { get; set; }
         public string? Note { get; set; }
         public int AppointmentId { get; set; }

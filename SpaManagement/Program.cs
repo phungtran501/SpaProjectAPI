@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.RegisterContextDb(builder.Configuration);
 
 //Register Dependency Injection
-builder.Services.RegisterDI();
+builder.Services.RegisterDI(builder.Configuration);
 
 //Register Authentication Token
 builder.Services.RegisterTokenBear(builder.Configuration);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ats4K7uZsbCS4VfMkRbR35pl4y55X++1wxybQoA9VUL2OcRDTPhqP+NPX0KlSYCSbXi/+3sySa6xcXicFLXN2w==",
+  "dgSpecHash": "7uKanGqoREejnq4gdkacybpyE0V/3lJU+8P9zeiH572C5pI+TbxwhKsF9aoo4FpK6YxAuQPEbdW8IYXRKVnBGA==",
   "success": true,
-  "projectFilePath": "F:\\SpaManagement\\SpaManagement\\SpaManagement.csproj",
+  "projectFilePath": "F:\\SpaProjectAPI\\SpaManagement\\SpaManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

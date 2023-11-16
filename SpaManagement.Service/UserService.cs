@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
+using SpaManagement.Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,14 +43,5 @@ namespace SpaManagement.Service
             return user;
         }
 
-        public async Task<Customer> FindByUsername(string username)
-        {
-            return await _unitOfWork.CustomerRepository.GetSingleByConditionAsync(x => x.UserName == username);
-        }
-
-        public async Task<Customer> FindById(int customerId)
-        {
-            return await _unitOfWork.CustomerRepository.GetSingleByConditionAsync(x => x.Id == customerId);
-        }
     }
 }

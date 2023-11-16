@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SpaManagement.Authentication.Service;
 using SpaManagement.DTOs;
-using SpaManagement.Service;
+using SpaManagement.Service.Abstracts;
 
 namespace SpaManagement.Controllers
 {

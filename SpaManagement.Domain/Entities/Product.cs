@@ -16,7 +16,7 @@ namespace SpaManagement.Domain.Entities
         public string Decription { get; set; }
         public bool IsActive { get; set; }
 
-        public string Price { get; set; }
+        public double Price { get; set; }
         public DateTime CreateOn { get; set; }
         public int ServicesId { get; set; }
         [ForeignKey(nameof(ServicesId))]

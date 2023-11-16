@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SpaManagement.Service;
+using SpaManagement.Service.Abstracts;
 
 namespace SpaManagement.Controllers
 {

@@ -2924,11 +2924,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SpaManagement\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj",
+      "projectUniqueName": "F:\\SpaProjectAPI\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj",
       "projectName": "SpaManagement.Authentication.Service",
-      "projectPath": "F:\\SpaManagement\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj",
+      "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Authentication.Service\\SpaManagement.Authentication.Service.csproj",
       "packagesPath": "C:\\Users\\JINLONG_PC\\.nuget\\packages\\",
-      "outputPath": "F:\\SpaManagement\\SpaManagement.Authentication.Service\\obj\\",
+      "outputPath": "F:\\SpaProjectAPI\\SpaManagement.Authentication.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JINLONG_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2945,11 +2945,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {
-              "projectPath": "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj"
+            "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {
+              "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj"
             },
-            "F:\\SpaManagement\\SpaManagement.Service\\SpaManagement.Service.csproj": {
-              "projectPath": "F:\\SpaManagement\\SpaManagement.Service\\SpaManagement.Service.csproj"
+            "F:\\SpaProjectAPI\\SpaManagement.Service\\SpaManagement.Service.csproj": {
+              "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Service\\SpaManagement.Service.csproj"
             }
           }
         }

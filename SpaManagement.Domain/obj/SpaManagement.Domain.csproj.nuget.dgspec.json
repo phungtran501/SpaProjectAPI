@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {}
+    "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {}
   },
   "projects": {
-    "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {
+    "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj",
+        "projectUniqueName": "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj",
         "projectName": "SpaManagement.Domain",
-        "projectPath": "F:\\SpaManagement\\SpaManagement.Domain\\SpaManagement.Domain.csproj",
+        "projectPath": "F:\\SpaProjectAPI\\SpaManagement.Domain\\SpaManagement.Domain.csproj",
         "packagesPath": "C:\\Users\\JINLONG_PC\\.nuget\\packages\\",
-        "outputPath": "F:\\SpaManagement\\SpaManagement.Domain\\obj\\",
+        "outputPath": "F:\\SpaProjectAPI\\SpaManagement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JINLONG_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

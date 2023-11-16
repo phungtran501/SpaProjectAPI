@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d8vXP5E9wRy9v5OCkSMvOhjkPw3nFWyTlrYawpNi5qAZPDDF+jqIEXFC904euhA5ElSgzokkj6qYUsWtd5Av7Q==",
+  "dgSpecHash": "jYjjR/uqOecjUbHG47z+aWWNw9/mDZVUk3eyRCmv3BsrACRgw+01RzPhsAjS9dOpiV5ohA7cTZhI+v1tEC0/tw==",
   "success": true,
-  "projectFilePath": "F:\\SpaManagement\\SpaManagement.Service\\SpaManagement.Service.csproj",
+  "projectFilePath": "F:\\SpaProjectAPI\\SpaManagement.Service\\SpaManagement.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\JINLONG_PC\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

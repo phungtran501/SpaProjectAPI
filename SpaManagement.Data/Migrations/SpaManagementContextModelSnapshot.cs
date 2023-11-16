@@ -51,15 +51,15 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "97d131a6-d929-40e4-8736-08f41ef6100d",
-                            ConcurrencyStamp = "813e7299-191b-4a0f-9ae9-0ef6ddfcc2df",
+                            Id = "f7a32352-7282-48a2-93c8-22d023ff5835",
+                            ConcurrencyStamp = "ed6b0081-2f32-46fa-8089-253673e18536",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3266d99a-61c7-4081-aa9d-f42b13385087",
-                            ConcurrencyStamp = "c3421baf-15df-4043-b81a-659d6be4e64e",
+                            Id = "88bf0e59-744a-4eb8-966b-28d9defac73e",
+                            ConcurrencyStamp = "ae5b6716-f6bd-41b6-80cd-4a97944045e1",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -154,8 +154,8 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "0a3526dc-1fc2-4860-a078-67cdf725b28b",
-                            RoleId = "97d131a6-d929-40e4-8736-08f41ef6100d"
+                            UserId = "8464d552-5817-46e3-9f9d-bfc4f702be58",
+                            RoleId = "f7a32352-7282-48a2-93c8-22d023ff5835"
                         });
                 });
 
@@ -205,6 +205,12 @@ namespace SpaManagement.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystem")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -253,17 +259,19 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0a3526dc-1fc2-4860-a078-67cdf725b28b",
+                            Id = "8464d552-5817-46e3-9f9d-bfc4f702be58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "950ef737-60d2-4fe0-92ab-dc4fd6b01805",
+                            ConcurrencyStamp = "2f0deb0b-d23f-4697-8f8c-ec1c5d051543",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
+                            IsActive = false,
+                            IsSystem = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAKyIjJTV9qqf8vt9bmtOgOKFe6NZqi/vgH6Elzri+U35JHEHZ/fQGhHeAesxqO3pw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHOHeme/7YNCsNZGCPBAr1kv4s4ARi5oyOsfy6O2hD/66bLc4F/J4irU1OrwYHDQtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "11ac663e-7abb-43dd-be03-d37b1e330431",
+                            SecurityStamp = "a56e74c4-ef48-4373-bc6e-e6c0afa75062",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -277,21 +285,22 @@ namespace SpaManagement.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateOn")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Appointment");
                 });
@@ -339,9 +348,8 @@ namespace SpaManagement.Data.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -355,89 +363,6 @@ namespace SpaManagement.Data.Migrations
                     b.ToTable("AppointmentProductDetail");
                 });
 
-            modelBuilder.Entity("SpaManagement.Domain.Entities.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSystem")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("SpaManagement.Domain.Entities.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employee");
-                });
-
             modelBuilder.Entity("SpaManagement.Domain.Entities.Plan", b =>
                 {
                     b.Property<int>("Id")
@@ -446,7 +371,7 @@ namespace SpaManagement.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateOn")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Decription")
@@ -462,9 +387,8 @@ namespace SpaManagement.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -521,9 +445,8 @@ namespace SpaManagement.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ServicesId")
                         .HasColumnType("int");
@@ -652,13 +575,13 @@ namespace SpaManagement.Data.Migrations
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.Appointment", b =>
                 {
-                    b.HasOne("SpaManagement.Domain.Entities.Customer", "Customer")
+                    b.HasOne("SpaManagement.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentPlanDetail", b =>

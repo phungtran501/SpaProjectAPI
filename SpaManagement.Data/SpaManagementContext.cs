@@ -25,8 +25,6 @@ namespace SpaManagement.Data
         public DbSet<Appointment> Appointment { get; set; }
         public DbSet<AppointmentPlanDetail> AppointmentPlanDetail { get; set; }
         public DbSet<AppointmentProductDetail> AppointmentProductDetail { get; set; }
-
-        public DbSet<Employee> Employee { get; set; }
         public DbSet<Plan> Plan { get; set; }
         public DbSet<PlanDetail> PlanDetail { get; set; }
         public DbSet<Product> Product { get; set; }

@@ -5,8 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using SpaManagement.Authentication.Service;
 using SpaManagement.Data;
 using SpaManagement.Data.Abstract;
+using SpaManagement.Domain.Configuration;
+using SpaManagement.Domain.EmailHelper;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Service;
+using SpaManagement.Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +37,10 @@ namespace SpaManagement.Infrastructure.Configuration
                 .AddEntityFrameworkStores<SpaManagementContext>();
         }
 
-        public static void RegisterDI(this IServiceCollection service)
+        public static void RegisterDI(this IServiceCollection service, IConfiguration configuration)
         {
+            service.Configure<EmailConfig>(configuration.GetSection("MailSettings"));
+
             service.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             service.AddTransient<IUnitOfWork, UnitOfWork>(); 
             service.AddTransient<IDapperHelper, DapperHelper>();
@@ -46,8 +51,13 @@ namespace SpaManagement.Infrastructure.Configuration
             service.AddTransient<PasswordHasher<ApplicationUser>>();
             service.AddTransient<PasswordValidator<ApplicationUser>>();
             service.AddTransient<IServicesService, ServicesService>();
+            service.AddTransient<IEmailHelper, EmailHelper>();
+            service.AddTransient<IAccountService, AccountService>();
+            service.AddTransient<IRoleService, RoleService>();
+            service.AddTransient<IProductService, ProductService>();
+            service.AddTransient<IAppointmentService, AppointmentService>();
             
-
         }
+        
     }
 }

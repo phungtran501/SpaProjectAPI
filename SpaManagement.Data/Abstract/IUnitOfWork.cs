@@ -7,8 +7,6 @@ namespace SpaManagement.Data.Abstract
         Repository<AppointmentPlanDetail> AppointmentPlanDetailRepository { get; }
         Repository<AppointmentProductDetail> AppointmentProductDetailRepository { get; }
         Repository<Appointment> AppointmentRepository { get; }
-        Repository<Customer> CustomerRepository { get; }
-        Repository<Employee> EmployeeRepository { get; }
         Repository<PlanDetail> PlanDetailRepository { get; }
         Repository<Plan> PlanRepository { get; }
         Repository<Product> ProductRepository { get; }
