@@ -9,7 +9,7 @@ namespace SpaManagement.Controllers
     [Route("api/[controller]")]
     public class PlanController : Controller
     {
-        IPlanService _planService;
+        IPlanService _planService; 
         public PlanController(IPlanService planService)
         {
             _planService = planService;
@@ -22,6 +22,13 @@ namespace SpaManagement.Controllers
             return Ok(plans);
         }
 
+        [HttpGet("get-by-id/{id}")]
+        public async Task<IActionResult> GetAAAAAById(string id) ///api/get-by-id/3 //https://domain/api/get-by-id?id=3
+        {
+            var plans = await _planService.GetPlan();
+            return Ok(plans);
+        }
+
         [HttpPatch]
         public async Task<IActionResult> UpdatePlanAsync(int id)
         {
@@ -29,3 +36,4 @@ namespace SpaManagement.Controllers
         }
     }
 }
+ 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpaManagement.Service.DTOs
+﻿namespace SpaManagement.Service.DTOs.Product
 {
-    public class ProductModel
+    public class ProductDTO
     {
         public int? Id { get; set; }
         public string Name { get; set; }
@@ -15,5 +9,8 @@ namespace SpaManagement.Service.DTOs
         public double Price { get; set; }
         public DateTime CreateOn { get; set; }
         public int ServiceId { get; set; }
+
+        public string ServiceName { get; set; }
+
     }
 }

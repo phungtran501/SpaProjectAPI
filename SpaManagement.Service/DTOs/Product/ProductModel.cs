@@ -1,8 +1,6 @@
-﻿
-
-namespace SpaManagement.Service.DTOs
+﻿namespace SpaManagement.Service.DTOs.Product
 {
-    public class ProductDTO
+    public class ProductModel
     {
         public int? Id { get; set; }
         public string Name { get; set; }
@@ -11,8 +9,5 @@ namespace SpaManagement.Service.DTOs
         public double Price { get; set; }
         public DateTime CreateOn { get; set; }
         public int ServiceId { get; set; }
-
-        public string ServiceName { get; set; }
-
     }
 }

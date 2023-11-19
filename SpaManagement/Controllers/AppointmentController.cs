@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Domain.Enums;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 

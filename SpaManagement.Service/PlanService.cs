@@ -1,11 +1,6 @@
 ﻿using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaManagement.Service
 {
@@ -27,6 +22,11 @@ namespace SpaManagement.Service
         public async Task<bool> UpdatePlan(int id)
         {
             var menu = await _unitOfWork.PlanRepository.GetById(id);
+
+            if(menu is null)
+            {
+                //return NotFound("")
+            }
 
             menu.IsActive = false;
 

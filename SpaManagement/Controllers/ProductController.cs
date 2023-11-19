@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SpaManagement.Data.Abstract;
-using SpaManagement.Domain.EmailHelper;
-using SpaManagement.Domain.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Domain.Enums;
-using SpaManagement.Domain.Model;
 using SpaManagement.Service.Abstracts;
-using SpaManagement.Service.DTOs;
+using SpaManagement.Service.DTOs.Product;
 
 namespace SpaManagement.Controllers
 {
@@ -57,6 +52,31 @@ namespace SpaManagement.Controllers
         {
             await _productService.DeleteProduct(productId);
             return Ok(true);
+        }
+
+        [HttpGet("product-by-service")]
+        public async Task<IActionResult> GetProductByService(int id)
+        {
+
+            var products = await _productService.GetProductByService(id);
+
+            return Ok(products);
+        }
+
+        [HttpGet("random-product")]
+        public async Task<IActionResult> RandomProduct()
+        {
+            var products = await _productService.GetRandomProduct();
+
+            return Ok(products);
+        }
+
+        [HttpGet("all-product")]
+        public async Task<IActionResult> AllProduct(int pageIndex, int pageSize = 12)
+        {
+            var products = await _productService.AllProductPagination(pageIndex, pageSize);
+
+            return Ok(products);
         }
     }
 }

@@ -3,7 +3,6 @@ using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
-using Microsoft.AspNetCore.Identity;
 
 namespace SpaManagement.Service
 {
@@ -28,20 +27,12 @@ namespace SpaManagement.Service
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Decription,
-                Action = ActionDatatable(x.Id)
+                Description = x.Decription.Length>100 ? x.Decription.Substring(0, 100) : x.Decription,
             });
 
             return data;
         }
 
-        private string ActionDatatable(int id)
-        {
-            string delete = "<a href=\"#\" title='delete' class='btn-delete'><span class=\"bi bi-trash\"></span></a>";
-            string edit = $"<a href=\"/admin/account/createupdate?id={id}\" title='edit'><span class=\"bi bi-pen\"></span></a>";
-
-            return $"<span data-key=\"{id}\">{edit}&nbsp;{delete}</span>";
-        }
 
         public async Task<ResponseModel> CreateUpdate(ServiceDTO serviceDTO)
         {
@@ -57,7 +48,6 @@ namespace SpaManagement.Service
                     Action = serviceDTO.Id is null ? ActionType.Insert : ActionType.Update
                 };
             }
-
 
             if (serviceDTO.Id == 0)
             {
@@ -111,5 +101,6 @@ namespace SpaManagement.Service
 
             return result;
         }
+
     }
 }

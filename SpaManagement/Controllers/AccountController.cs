@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 

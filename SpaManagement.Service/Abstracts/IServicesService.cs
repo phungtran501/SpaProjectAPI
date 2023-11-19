@@ -1,5 +1,4 @@
-﻿using SpaManagement.Domain.Entities;
-using SpaManagement.Service.DTOs;
+﻿using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Service.Abstracts
 {

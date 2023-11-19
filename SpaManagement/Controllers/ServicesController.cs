@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Data.Abstract;
-using SpaManagement.Domain.EmailHelper;
-using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
-using SpaManagement.Domain.Model;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 

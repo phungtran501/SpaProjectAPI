@@ -1,14 +1,13 @@
 ﻿using Dapper;
-using Microsoft.AspNetCore.Identity;
-using SpaManagement.Data;
+using Microsoft.EntityFrameworkCore;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
+using SpaManagement.Service.DTOs.Product;
 using System.Data;
-using System.Diagnostics;
-
+using System.Xml.Schema;
 
 namespace SpaManagement.Service
 {
@@ -36,7 +35,6 @@ namespace SpaManagement.Service
             var result = await _dapperHelper.ExcuteStoreProcedureReturnList<ProductDTO>("GetAllProducts", dynamicParameters);
 
             var total = dynamicParameters.Get<int>("totalRecord");
-
 
             var data = result.Select(x => new ProductDTO
             {
@@ -135,6 +133,67 @@ namespace SpaManagement.Service
             product.IsActive = false;
             _unitOfWork.ProductRepository.Update(product);
             await _unitOfWork.ProductRepository.Commit();
+        }
+
+        public async Task<IEnumerable<ProductModel>> GetProductByService(int id)
+        {
+            var products = await _unitOfWork.ProductRepository.GetData(x => x.ServicesId == id);
+
+            var result = products.Select(x => new ProductModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            });
+
+            return result;
+
+        }
+
+        public async Task<IEnumerable<ProductDTO>> GetRandomProduct()
+        {
+            var products = await _unitOfWork.ProductRepository.Table.Where(x => x.IsActive)
+                .Join(_unitOfWork.ServicesRepository.Table, x => x.ServicesId, y => y.Id,
+                (product, service) => new ProductDTO
+                {
+                    Id= product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    ServiceName = service.Name,
+                }).ToListAsync();
+
+            var radomProduct = products.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
+
+            return radomProduct;
+
+        }
+
+        public async Task<ProductResponse> AllProductPagination(int pageIndex = 1, int pageSize = 12)
+        {
+            var products = await _unitOfWork.ProductRepository.Table.Where(x => x.IsActive)
+                .Join(_unitOfWork.ServicesRepository.Table, x => x.ServicesId, y => y.Id,
+                (product, service) => new ProductDTO
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    ServiceName = service.Name,
+                    ServiceId = service.Id,
+                }).ToListAsync();
+
+            var totalRow = products.Count(); 
+
+            var totalPage = totalRow % pageSize != 0 ? (totalRow / pageSize) + 1 : totalRow / pageSize; 
+
+            var result = products.Skip((pageIndex-1) * pageSize).Take(pageSize).ToList();
+
+            var productResponse = new ProductResponse
+            {
+                TotalPage = totalPage,
+                Products = result,
+            };
+
+            return (productResponse);
+
         }
     }
 }

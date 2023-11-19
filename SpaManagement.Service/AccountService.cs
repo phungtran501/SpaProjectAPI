@@ -1,17 +1,11 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Identity;
-using SpaManagement.Data;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaManagement.Service
 {
@@ -43,7 +37,6 @@ namespace SpaManagement.Service
 
             var total = dynamicParameters.Get<int>("totalRecord");
 
-
             var data = result.Select(x => new AccountDTO
             {
                 Id = x.Id,
@@ -56,7 +49,6 @@ namespace SpaManagement.Service
                 IsSystem = x.IsSystem,
                 IsActive = x.IsActive
             }).ToArray();
-
 
             return data;
         }
@@ -147,7 +139,6 @@ namespace SpaManagement.Service
                     await _userManager.AddToRoleAsync(user, accountDTO.RoleName);
                 }
 
-
                 user.Address = accountDTO.Address;
                 user.Fullname = accountDTO.Fullname;
                 user.Email = accountDTO.Email;
@@ -155,7 +146,6 @@ namespace SpaManagement.Service
                 user.IsActive = accountDTO.IsActive;
                 user.IsSystem = accountDTO.IsSystem;
                 user.PhoneNumber = accountDTO.PhoneNumber;
-
 
                 var result = await _userManager.UpdateAsync(user);
 
@@ -202,6 +192,5 @@ namespace SpaManagement.Service
 
             return result;
         }
-
     }
 }

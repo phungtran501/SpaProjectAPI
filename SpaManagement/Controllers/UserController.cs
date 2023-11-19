@@ -56,27 +56,6 @@ namespace SpaManagement.Controllers
             
         }
 
-        [HttpGet]
-        public IActionResult Update()
-        {
-            //UserModel userModel = new()
-            //{
-            //    FullName = "Admin1",
-            //    Username = "admin.1",
-            //    Password = "admin.123"
-            //};
-
-            //Customer customer = _mapper.Map<Customer>(userModel);
-
-            //UserModel modelUser = _mapper.Map<UserModel>(customer);
-
-            //List<Customer> customers = new List<Customer>() { customer};
-
-            //var ls = _mapper.Map<List<Customer>>(customers);
-
-            return Ok(1);
-        }
-
     }
 
    

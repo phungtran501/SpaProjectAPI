@@ -1,13 +1,4 @@
-﻿using SpaManagement.Domain.Entities;
-using SpaManagement.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpaManagement.Service.DTOs
+﻿namespace SpaManagement.Service.DTOs
 {
     public class AppointmentDTO
     {

@@ -5,12 +5,7 @@ using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaManagement.Service
 {
@@ -40,7 +35,6 @@ namespace SpaManagement.Service
 
             var total = dynamicParameters.Get<int>("totalRecord");
 
-
             var data = result.Select(x => new AppointmentDTO
             {
                 Id = x.Id,
@@ -56,7 +50,6 @@ namespace SpaManagement.Service
 
         public async Task<AppoinmentRequestDTO> GetAppointmentById(int id)
         {
-
             var appointment = await _unitOfWork.AppointmentRepository.GetById(id);
 
             return new AppoinmentRequestDTO
@@ -66,13 +59,12 @@ namespace SpaManagement.Service
                     Note = appointment.Note,
                     Status = appointment.Status,
                 };
-
         }
+
         private string GetStatusAppointment(short status)
         {
             switch (status)
             {
-
                 case (short)StatusAppointment.Confirmed:
                     return nameof(StatusAppointment.Confirmed);
                 case (short)StatusAppointment.Completed: 
