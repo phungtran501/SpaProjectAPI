@@ -10,11 +10,6 @@ using SpaManagement.Domain.EmailHelper;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaManagement.Infrastructure.Configuration
 {

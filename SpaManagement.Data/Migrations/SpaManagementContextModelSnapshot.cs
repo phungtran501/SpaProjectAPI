@@ -51,15 +51,15 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f7a32352-7282-48a2-93c8-22d023ff5835",
-                            ConcurrencyStamp = "ed6b0081-2f32-46fa-8089-253673e18536",
+                            Id = "198eba4b-fae5-4a99-9219-17d2b13e6d4f",
+                            ConcurrencyStamp = "d87126f5-f933-4e87-bfe8-884e23dc5dab",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "88bf0e59-744a-4eb8-966b-28d9defac73e",
-                            ConcurrencyStamp = "ae5b6716-f6bd-41b6-80cd-4a97944045e1",
+                            Id = "cd7ebcde-ac6e-4815-830f-e93ce15fc6cf",
+                            ConcurrencyStamp = "55605caf-f539-4e84-bc85-3767d3602e97",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -154,8 +154,8 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8464d552-5817-46e3-9f9d-bfc4f702be58",
-                            RoleId = "f7a32352-7282-48a2-93c8-22d023ff5835"
+                            UserId = "508cd48e-2d2f-4b87-b91d-54478a0f149b",
+                            RoleId = "198eba4b-fae5-4a99-9219-17d2b13e6d4f"
                         });
                 });
 
@@ -259,9 +259,9 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8464d552-5817-46e3-9f9d-bfc4f702be58",
+                            Id = "508cd48e-2d2f-4b87-b91d-54478a0f149b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2f0deb0b-d23f-4697-8f8c-ec1c5d051543",
+                            ConcurrencyStamp = "4c8d425c-b8b0-4c74-8844-0dbd67b6a215",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             IsActive = false,
@@ -269,9 +269,9 @@ namespace SpaManagement.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHOHeme/7YNCsNZGCPBAr1kv4s4ARi5oyOsfy6O2hD/66bLc4F/J4irU1OrwYHDQtQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENntXpYd7+LM24Md424Ac7mwuMCZ0J6ADOkkVV75hxQ1KSce+4hh5QrA/WeMMXYr3A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a56e74c4-ef48-4373-bc6e-e6c0afa75062",
+                            SecurityStamp = "0e22e79b-e940-4ab3-90c9-040858ecb9d8",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

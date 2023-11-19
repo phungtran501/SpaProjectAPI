@@ -1,10 +1,5 @@
 ﻿using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaManagement.Data
 {
@@ -42,7 +37,6 @@ namespace SpaManagement.Data
         public Repository<Services> ServicesRepository => _repositoryServices ??= new Repository<Services>(_spaManagementContext);
 
         public Repository<UserToken> UserTokenRepository => _repositoryUserToken ??= new Repository<UserToken>(_spaManagementContext);
-
 
         public async Task CommitAsync()
         {
