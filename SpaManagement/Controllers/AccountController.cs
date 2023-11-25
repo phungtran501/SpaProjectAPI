@@ -55,7 +55,7 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> Delete(string userId)
         {
             await _accountService.DeleteAccount(userId);
-            return Json(true);
+            return Ok(true);
         }
 
         [HttpGet("get-accounts")]

@@ -111,7 +111,7 @@ namespace SpaManagement.Service
                 Status = true,
                 Message = appoinmentRequestDTO.Id is null ? "Insert successful" : "Update successful",
                 StatusType = StatusType.Success,
-                Action = appoinmentRequestDTO.Id is null ? ActionType.Insert : ActionType.Update
+             
             };
 
         }

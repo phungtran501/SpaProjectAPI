@@ -7,6 +7,6 @@ namespace SpaManagement.Service.Abstracts
         Task<ResponseModel> CreateUpdate(ServiceDTO serviceDTO);
         Task DeleteService(int key);
         Task<IEnumerable<ServiceDTO>> GetAllListServices(int page, int per_page);
-        Task<IEnumerable<ServiceDTO>> GetServices();
+        Task<IEnumerable<ServiceResponse>> GetServices();
     }
 }

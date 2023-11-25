@@ -7,7 +7,6 @@ namespace SpaManagement.Service.DTOs
         public bool Status { get; set; }
         public string Message { get; set; }
         public StatusType StatusType { get; set; }
-
-        public ActionType Action { get; set; }
+        public object Data { get; set; }
     }
 }

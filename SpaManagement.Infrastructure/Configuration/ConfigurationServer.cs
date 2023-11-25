@@ -8,6 +8,7 @@ using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Configuration;
 using SpaManagement.Domain.EmailHelper;
 using SpaManagement.Domain.Entities;
+using SpaManagement.Domain.Helper;
 using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 
@@ -49,9 +50,10 @@ namespace SpaManagement.Infrastructure.Configuration
             service.AddTransient<IEmailHelper, EmailHelper>();
             service.AddTransient<IAccountService, AccountService>();
             service.AddTransient<IRoleService, RoleService>();
-            service.AddTransient<IProductService, ProductService>();
+            service.AddTransient<IProductService, ProductService>(); //Dependency Injection
             service.AddTransient<IAppointmentService, AppointmentService>();
-            
+            service.AddTransient<IImageHandler, ImageHandler>();
+
         }
         
     }

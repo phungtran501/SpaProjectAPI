@@ -1,8 +1,10 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
+using SpaManagement.Domain.Helper;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 using SpaManagement.Service.DTOs.Product;
@@ -15,11 +17,13 @@ namespace SpaManagement.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDapperHelper _dapperHelper;
+        private readonly IImageHandler _imageHandler;
 
-        public ProductService(IUnitOfWork unitOfWork, IDapperHelper dapperHelper)
+        public ProductService(IUnitOfWork unitOfWork, IDapperHelper dapperHelper, IImageHandler imageHandler)
         {
             _unitOfWork = unitOfWork;
             _dapperHelper = dapperHelper;
+            _imageHandler = imageHandler;
         }
 
         public async Task<IEnumerable<ProductDTO>> GetAllProduct(int pageIndex, int pageSize)
@@ -83,9 +87,11 @@ namespace SpaManagement.Service
                     Status = false,
                     Message = "Product name is exist",
                     StatusType = StatusType.Fail,
-                    Action = productModel.Id is null ? ActionType.Insert : ActionType.Update
                 };
             }
+
+            var maxId = productModel.Id;
+
             if (productModel.Id == 0)
             {
                 var pro = new Product
@@ -116,13 +122,13 @@ namespace SpaManagement.Service
 
             }
             await _unitOfWork.ProductRepository.Commit();
+            await _imageHandler.SaveImage("SpaProjectAPI/SpaManagement/Image/product", new List<IFormFile> { productModel.ProductImage }, $"{maxId}.png");
 
             return new ResponseModel
             {
                 Status = true,
                 Message = productModel.Id is null ? "Insert successful" : "Update successful",
                 StatusType = StatusType.Success,
-                Action = productModel.Id is null ? ActionType.Insert : ActionType.Update
             };
 
         }

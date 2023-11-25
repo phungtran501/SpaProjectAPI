@@ -3,6 +3,9 @@ using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
+using SpaManagement.Domain.Helper;
+using Microsoft.AspNetCore.Http;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SpaManagement.Service
 {
@@ -33,7 +36,6 @@ namespace SpaManagement.Service
             return data;
         }
 
-
         public async Task<ResponseModel> CreateUpdate(ServiceDTO serviceDTO)
         {
             var service = await _unitOfWork.ServicesRepository.GetSingleByConditionAsync(x => x.Name.ToLower() == serviceDTO.Name.ToLower() 
@@ -44,10 +46,11 @@ namespace SpaManagement.Service
                 {
                     Status = false,
                     Message = "Service name is exist",
-                    StatusType = StatusType.Fail,
-                    Action = serviceDTO.Id is null ? ActionType.Insert : ActionType.Update
+                    StatusType = StatusType.Fail
                 };
             }
+
+            var maxId = serviceDTO.Id;
 
             if (serviceDTO.Id == 0)
             {
@@ -59,6 +62,8 @@ namespace SpaManagement.Service
                 };
 
                 await _unitOfWork.ServicesRepository.Insert(ser);
+                await _unitOfWork.ServicesRepository.Commit();
+                maxId = ser.Id;
             }
             else  
             {
@@ -66,17 +71,17 @@ namespace SpaManagement.Service
                 ser.Name = serviceDTO.Name;
                 ser.IsActive = serviceDTO.IsActive;
                 ser.Decription = serviceDTO.Description;
-                _unitOfWork.ServicesRepository.Update(ser);
-                
-            }
-            await _unitOfWork.ServicesRepository.Commit();
 
+                _unitOfWork.ServicesRepository.Update(ser);
+                await _unitOfWork.ServicesRepository.Commit();
+            }
+       
             return new ResponseModel
             {
                 Status = true,
                 Message = serviceDTO.Id is null ? "" : "Insert successful",
                 StatusType = StatusType.Success,
-                Action = serviceDTO.Id is null ? ActionType.Insert : ActionType.Update
+                Data = maxId
             };
         }
 
@@ -88,16 +93,16 @@ namespace SpaManagement.Service
             await _unitOfWork.ServicesRepository.Commit();
         }
 
-        public async Task<IEnumerable<ServiceDTO>> GetServices()
+        public async Task<IEnumerable<ServiceResponse>> GetServices()
         {
             var services = await _unitOfWork.ServicesRepository.GetData(x => x.IsActive);
 
-            var result = services.Select(x => new ServiceDTO
+            var result = services.Select(x => new ServiceResponse
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Decription
-            });
+                Description = x.Decription,
+            }).ToList() ;
 
             return result;
         }

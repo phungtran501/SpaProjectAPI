@@ -1,4 +1,6 @@
-﻿namespace SpaManagement.Service.DTOs.Product
+﻿using Microsoft.AspNetCore.Http;
+
+namespace SpaManagement.Service.DTOs.Product
 {
     public class ProductModel
     {
@@ -9,5 +11,6 @@
         public double Price { get; set; }
         public DateTime CreateOn { get; set; }
         public int ServiceId { get; set; }
+        public IFormFile? ProductImage { get; set; }
     }
 }

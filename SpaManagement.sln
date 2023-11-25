@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaManagement.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaManagement.Data", "SpaManagement.Data\SpaManagement.Data.csproj", "{44755201-CFDF-4882-911D-12ACA6B4F690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaManagement.Service", "SpaManagement.Service\SpaManagement.Service.csproj", "{32E7E1B4-38B0-4E00-ACFC-FCDB05317B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaManagement.Service", "SpaManagement.Service\SpaManagement.Service.csproj", "{32E7E1B4-38B0-4E00-ACFC-FCDB05317B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaManagement.Authentication.Service", "SpaManagement.Authentication.Service\SpaManagement.Authentication.Service.csproj", "{F187DC17-9146-45EE-AB70-24EBE328EF49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaManagement.Authentication.Service", "SpaManagement.Authentication.Service\SpaManagement.Authentication.Service.csproj", "{F187DC17-9146-45EE-AB70-24EBE328EF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

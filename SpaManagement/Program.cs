@@ -49,7 +49,7 @@ app.UseCors(x => x
                .AllowCredentials());
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseAuthentication();
 
 app.UseAuthorization();

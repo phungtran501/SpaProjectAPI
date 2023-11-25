@@ -107,7 +107,7 @@ namespace SpaManagement.Service
                         Status = true,
                         Message = "Insert successful",
                         StatusType = StatusType.Success,
-                        Action = ActionType.Insert
+            
                     };
                 }
                 else
@@ -119,7 +119,6 @@ namespace SpaManagement.Service
                         Status = false,
                         Message = string.Join(';', errors),
                         StatusType = StatusType.Fail,
-                        Action = ActionType.Insert
                     };
                 }
             }
@@ -156,7 +155,6 @@ namespace SpaManagement.Service
                         Status = true,
                         Message = "Update successful",
                         StatusType = StatusType.Success,
-                        Action = ActionType.Update
                     };
                 }
                 else
@@ -166,7 +164,6 @@ namespace SpaManagement.Service
                         Status = false,
                         Message = "Update failed",
                         StatusType = StatusType.Fail,
-                        Action = ActionType.Update
                     };
                 }
             }

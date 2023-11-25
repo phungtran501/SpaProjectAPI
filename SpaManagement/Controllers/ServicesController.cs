@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Enums;
+using SpaManagement.Domain.Helper;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
@@ -13,13 +14,18 @@ namespace SpaManagement.Controllers
     {
         private readonly IServicesService _servicesService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageHandler _imageHandler;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-
-        public ServicesController(IServicesService servicesService, IUnitOfWork unitOfWork) 
+        public ServicesController(IServicesService servicesService, 
+            IUnitOfWork unitOfWork, 
+            IImageHandler imageHandler,
+            IWebHostEnvironment  webHostEnvironment) 
         {
-            _servicesService = servicesService;
+            _servicesService = servicesService; 
             _unitOfWork = unitOfWork;
-
+            _imageHandler = imageHandler;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet("get-list")]
@@ -47,11 +53,17 @@ namespace SpaManagement.Controllers
         }
 
         [HttpPost("save")]
-        public async Task<IActionResult> InsertUpdate([FromBody] ServiceDTO serviceDTO)
+        public async Task<IActionResult> InsertUpdate([FromForm] ServiceDTO md)
         {
-            var result = await _servicesService.CreateUpdate(serviceDTO);
+
+            var result = await _servicesService.CreateUpdate(md);
             if (result.Status && result.StatusType == StatusType.Success)
             {
+                var rootPath = _webHostEnvironment.WebRootPath;
+                var path = Path.Combine(rootPath, "Image/service");
+                var id = (int)result.Data;
+                await _imageHandler.SaveImage(path, new List<IFormFile> { md.Image }, $"{id}.png");
+
                 return Ok(result.Message);
             }
             else
@@ -64,7 +76,7 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _servicesService.DeleteService(id);
-            return Json(true);
+            return Ok(true);
         }
 
         [HttpGet("get-services")]

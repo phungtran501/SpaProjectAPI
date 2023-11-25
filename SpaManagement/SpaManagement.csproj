@@ -19,4 +19,13 @@
     <ProjectReference Include="..\SpaManagement.Infrastructure\SpaManagement.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Image\service\1.png" />
+    <None Include="wwwroot\Image\service\728ccde9-be9a-4a0f-ad88-0fbd78e6f674.png" />
+  </ItemGroup>
+
 </Project>
