@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using SpaManagement.Domain.Enums;
+using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
+using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PlanController : Controller
@@ -15,24 +18,35 @@ namespace SpaManagement.Controllers
             _planService = planService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index() //https://domain/api/menu
+        [HttpGet("get-list")]
+        public async Task<IActionResult> Index(int page, int per_page)
         {
-            var plans = await _planService.GetPlan();
+            var plans = await _planService.GetListPlan(page, per_page);
+
             return Ok(plans);
         }
 
-        [HttpGet("get-by-id/{id}")]
-        public async Task<IActionResult> GetAAAAAById(string id) ///api/get-by-id/3 //https://domain/api/get-by-id?id=3
+        [HttpGet("{id}/detail")]
+        public async Task<IActionResult> GetPlanById(int id)
         {
-            var plans = await _planService.GetPlan();
-            return Ok(plans);
+
+            var plan = await _planService.GetPlanById(id);
+
+            return Ok(plan);
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> UpdatePlanAsync(int id)
+        [HttpPost("save")]
+        public async Task<IActionResult> InsertUpdate([FromBody] PlanDTO md)
         {
-            return Ok(await _planService.UpdatePlan(id));
+            var result = await _planService.CreateUpdate(md);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _planService.DeletePlan(id);
+            return Ok(true);
         }
     }
 }

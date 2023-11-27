@@ -2,6 +2,7 @@
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Domain.Helper;
+using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
@@ -72,7 +73,7 @@ namespace SpaManagement.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
             await _servicesService.DeleteService(id);
@@ -83,6 +84,14 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> GetServices()
         {
             var services = await _servicesService.GetServices();
+
+            return Ok(services);
+        }
+
+        [HttpGet("random-service")]
+        public async Task<IActionResult> RandomService()
+        {
+            var services = await _servicesService.GetRandomServices();
 
             return Ok(services);
         }

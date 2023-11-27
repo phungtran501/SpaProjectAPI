@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SpaManagement.Service.DTOs.Product
+namespace SpaManagement.Service.DTOs
 {
-    public class ProductModel
+    public class PlanDTO
     {
         public int? Id { get; set; }
         public string Name { get; set; }
@@ -10,7 +14,5 @@ namespace SpaManagement.Service.DTOs.Product
         public bool IsActive { get; set; }
         public double Price { get; set; }
         public DateTime CreateOn { get; set; }
-        public int ServiceId { get; set; }
-        public IFormFile? Image { get; set; }
     }
 }

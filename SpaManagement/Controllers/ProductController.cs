@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Domain.Enums;
+using SpaManagement.Domain.Helper;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs.Product;
 
@@ -10,10 +11,14 @@ namespace SpaManagement.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IImageHandler _imageHandler;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IImageHandler imageHandler, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
+            _imageHandler = imageHandler;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet("get-list")]
@@ -34,11 +39,15 @@ namespace SpaManagement.Controllers
         }
 
         [HttpPost("save")]
-        public async Task<IActionResult> InsertUpdate([FromBody] ProductModel productModel)
+        public async Task<IActionResult> InsertUpdate([FromForm] ProductModel productModel)
         {
             var result = await _productService.CreateUpdate(productModel);
             if (result.Status && result.StatusType == StatusType.Success)
             {
+                var rootPath = _webHostEnvironment.WebRootPath;
+                var path = Path.Combine(rootPath, "Image/product");
+                var id = (int)result.Data;
+                await _imageHandler.SaveImage(path, new List<IFormFile> { productModel.Image }, $"{id}.png");
                 return Ok(result.Message);
             }
             else

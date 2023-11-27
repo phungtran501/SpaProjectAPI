@@ -45,7 +45,7 @@ namespace SpaManagement.Service
                 Id = x.Id,
                 Name = x.Name,
                 CreateOn = x.CreateOn,
-                Description = x.Description,
+                Decription = x.Decription.Length > 100 ? x.Decription.Substring(0, 100) : x.Decription,
                 Price = x.Price,
                 ServiceName = x.ServiceName,
                 IsActive = x.IsActive
@@ -65,7 +65,7 @@ namespace SpaManagement.Service
                     Id = product.Id,
                     ServiceId = service.Id,
                     Name = product.Name,
-                    Description = product.Decription,
+                    Decription = product.Decription,
                     Price = product.Price,
                     CreateOn = product.CreateOn,
                     IsActive = product.IsActive
@@ -105,6 +105,8 @@ namespace SpaManagement.Service
                 };
 
                 var result = _unitOfWork.ProductRepository.Insert(pro);
+                await _unitOfWork.ProductRepository.Commit();
+                maxId = pro.Id;
 
             }
             //update
@@ -119,16 +121,16 @@ namespace SpaManagement.Service
                 pro.CreateOn = DateTime.Now;
 
                 _unitOfWork.ProductRepository.Update(pro);
+                await _unitOfWork.ProductRepository.Commit();
 
             }
-            await _unitOfWork.ProductRepository.Commit();
-            await _imageHandler.SaveImage("SpaProjectAPI/SpaManagement/Image/product", new List<IFormFile> { productModel.ProductImage }, $"{maxId}.png");
 
             return new ResponseModel
             {
                 Status = true,
                 Message = productModel.Id is null ? "Insert successful" : "Update successful",
                 StatusType = StatusType.Success,
+                Data = maxId,
             };
 
         }
@@ -149,6 +151,7 @@ namespace SpaManagement.Service
             {
                 Id = x.Id,
                 Name = x.Name,
+                Description = x.Decription
             });
 
             return result;
