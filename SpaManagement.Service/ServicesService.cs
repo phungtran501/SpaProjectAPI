@@ -107,21 +107,7 @@ namespace SpaManagement.Service
             return result;
         }
 
-        public async Task<IEnumerable<ServiceResponse>> GetRandomServices()
-        {
-            var services = await _unitOfWork.ServicesRepository.GetData(x => x.IsActive);
-
-            var result = services.Select(x => new ServiceResponse
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Decription.Length > 100 ? x.Decription.Substring(0, 100) : x.Decription,
-            }).ToList();
-
-            var random = result.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
-
-            return random;
-        }
+        
 
     }
 }

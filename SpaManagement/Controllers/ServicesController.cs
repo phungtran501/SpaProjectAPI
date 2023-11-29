@@ -58,19 +58,12 @@ namespace SpaManagement.Controllers
         {
 
             var result = await _servicesService.CreateUpdate(md);
-            if (result.Status && result.StatusType == StatusType.Success)
-            {
-                var rootPath = _webHostEnvironment.WebRootPath;
-                var path = Path.Combine(rootPath, "Image/service");
-                var id = (int)result.Data;
-                await _imageHandler.SaveImage(path, new List<IFormFile> { md.Image }, $"{id}.png");
+            var rootPath = _webHostEnvironment.WebRootPath;
+            var path = Path.Combine(rootPath, "Image/service");
+            var id = (int)result.Data;
+            await _imageHandler.SaveImage(path, new List<IFormFile> { md.Image }, $"{id}.png");
 
-                return Ok(result.Message);
-            }
-            else
-            {
-                return BadRequest(result.Message);
-            }
+            return Ok(result);
         }
 
         [HttpDelete("id")]
@@ -88,12 +81,5 @@ namespace SpaManagement.Controllers
             return Ok(services);
         }
 
-        [HttpGet("random-service")]
-        public async Task<IActionResult> RandomService()
-        {
-            var services = await _servicesService.GetRandomServices();
-
-            return Ok(services);
-        }
     }
 }

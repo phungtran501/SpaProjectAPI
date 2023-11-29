@@ -37,17 +37,11 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> InsertUpdate([FromBody] AppoinmentRequestDTO appoinmentRequestDTO)
         {
             var result = await _appointmentService.CreateUpdate(appoinmentRequestDTO);
-            if (result.Status && result.StatusType == StatusType.Success)
-            {
+
                 return Ok(result.Message);
-            }
-            else
-            {
-                return BadRequest(result.Message);
-            }
         }
 
-        [HttpDelete]
+        [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
             await _appointmentService.DeleteAppointment(id);

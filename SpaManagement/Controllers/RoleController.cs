@@ -47,17 +47,11 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> InsertUpdate([FromBody] RoleDTO roleDTO)
         {
             var result = await _roleService.CreateUpdate(roleDTO);
-            if (result.Status && result.StatusType == StatusType.Success)
-            {
+
                 return Ok(result.Message);
-            }
-            else
-            {
-                return BadRequest(result.Message);
-            }
         }
 
-        [HttpDelete]
+        [HttpDelete("id")]
         public async Task<IActionResult> Delete(string id)
         {
             await _roleService.DeleteRole(id);

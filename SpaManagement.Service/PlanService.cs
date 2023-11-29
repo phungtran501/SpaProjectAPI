@@ -4,6 +4,7 @@ using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 using SpaManagement.Service.DTOs.Product;
+using PlanDetail = SpaManagement.Service.DTOs.PlanDetail;
 
 namespace SpaManagement.Service
 {
@@ -60,7 +61,25 @@ namespace SpaManagement.Service
                     IsActive = true
                 };
 
-                var result = _unitOfWork.PlanRepository.Insert(newPlan);
+                await _unitOfWork.PlanRepository.Insert(newPlan);
+                await _unitOfWork.PlanRepository.Commit();
+
+                foreach (var item in planDTO.Detail)
+                {
+                    if(item.Id == 0)
+                    {
+                        var detail = new Domain.Entities.PlanDetail
+                        {
+                            PlanId = newPlan.Id,
+                            Note = item.Note,
+                            ProductId = item.ProductId,
+                        };
+
+                        await _unitOfWork.PlanDetailRepository.Insert(detail);
+                    }
+                }
+
+                await _unitOfWork.PlanDetailRepository.Commit();
             }
             //update
             else
@@ -73,6 +92,33 @@ namespace SpaManagement.Service
                 getPlan.CreatedOn = DateTime.Now;
 
                 _unitOfWork.PlanRepository.Update(getPlan);
+
+                foreach (var item in planDTO.Detail)
+                {
+                    if (item.Id == 0)
+                    {
+                        var detail = new Domain.Entities.PlanDetail
+                        {
+                            PlanId = getPlan.Id,
+                            Note = item.Note,
+                            ProductId = item.ProductId,
+                        };
+
+                        await _unitOfWork.PlanDetailRepository.Insert(detail);
+
+                        continue;
+                    }
+
+                    var getDetail = await _unitOfWork.PlanDetailRepository.GetById(item.Id);
+
+                    getDetail.PlanId = getPlan.Id;
+                    getDetail.Note = item.Note;
+                    getDetail.ProductId = item.ProductId;
+
+                    _unitOfWork.PlanDetailRepository.Update(getDetail);
+                }
+
+                await _unitOfWork.PlanDetailRepository.Commit();
 
             }
             await _unitOfWork.PlanRepository.Commit();
@@ -91,13 +137,21 @@ namespace SpaManagement.Service
 
             var plan = await _unitOfWork.PlanRepository.GetById(id);
 
+            var detail = await _unitOfWork.PlanDetailRepository.GetData(x => x.PlanId == id);
+
             var result = new PlanDTO
             {
                 Id = plan.Id,
                 Name = plan.Name,
                 Description = plan.Decription,
-                Price= plan.Price,
+                Price = plan.Price,
                 IsActive = plan.IsActive,
+                Detail = detail.Select(x => new PlanDetail
+                {
+                    Id = x.Id,
+                    Note = x.Note,
+                    ProductId = x.ProductId,
+                }).ToList()
             };
 
             return result;

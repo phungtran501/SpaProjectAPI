@@ -41,17 +41,11 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> InsertUpdate([FromBody] AccountDTO accountDTO)
         {
             var result = await _accountService.CreateUpdate(accountDTO);
-            if (result.Status && result.StatusType == StatusType.Success)
-            {
-                return Ok(result.Message);
-            }
-            else
-            {
-                return BadRequest(result.Message);
-            }
+
+                return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpDelete("id")]
         public async Task<IActionResult> Delete(string userId)
         {
             await _accountService.DeleteAccount(userId);

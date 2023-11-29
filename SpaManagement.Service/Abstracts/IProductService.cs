@@ -11,6 +11,7 @@ namespace SpaManagement.Service.Abstracts
         Task<IEnumerable<ProductDTO>> GetAllProduct(int pageIndex, int pageSize);
         Task<ProductDTO> GetProductById(int id);
         Task<IEnumerable<ProductModel>> GetProductByService(int id);
+        Task<IEnumerable<ProductDTO>> GetProducts();
         Task<IEnumerable<ProductDTO>> GetRandomProduct();
     }
 }

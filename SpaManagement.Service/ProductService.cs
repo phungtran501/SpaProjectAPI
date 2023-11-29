@@ -204,5 +204,19 @@ namespace SpaManagement.Service
             return (productResponse);
 
         }
+
+        public async Task<IEnumerable<ProductDTO>> GetProducts()
+        {
+            var products = await _unitOfWork.ProductRepository.GetData(x => x.IsActive);
+
+            var result = products.Select(x => new ProductDTO
+            {
+                
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
+
+            return result;
+        }
     }
 }

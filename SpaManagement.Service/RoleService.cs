@@ -45,18 +45,6 @@ namespace SpaManagement.Service
 
         public async Task<ResponseModel> CreateUpdate(RoleDTO roleDTO)
         {
-            var roles = _roleManager.Roles.Where(x => x.Name.ToLower() == roleDTO.Name.ToLower() && x.Id != roleDTO.Id);
-
-            if (roles is not null)
-            {
-                return new ResponseModel
-                {
-                    Status = false,
-                    Message = "Role name is exist",
-                    StatusType = StatusType.Fail,
-                };
-            }
-
             if (string.IsNullOrEmpty(roleDTO.Id))
             {
                 var role = new IdentityRole
@@ -65,23 +53,28 @@ namespace SpaManagement.Service
                 };
 
                 var result = await _roleManager.CreateAsync(role);
+
+                return result.Succeeded
+                    ? new ResponseModel { Status = true, Message = "Insert successful", StatusType = StatusType.Success }
+                    : new ResponseModel { Status = false, Message = string.Join(';', result.Errors.Select(x => x.Description)), StatusType = StatusType.Fail };
             }
             else
             {
                 var role = await _roleManager.FindByIdAsync(roleDTO.Id);
+                if (role == null)
+                {
+                    return new ResponseModel { Status = false, Message = "Role not found", StatusType = StatusType.Fail };
+                }
 
                 role.Name = roleDTO.Name;
 
                 var result = await _roleManager.UpdateAsync(role);
 
+                return result.Succeeded
+                    ? new ResponseModel { Status = true, Message = "Update successful", StatusType = StatusType.Success }
+                    : new ResponseModel { Status = false, Message = result.Errors.FirstOrDefault()?.Description, StatusType = StatusType.Fail };
             }
 
-            return new ResponseModel
-            {
-                Status = true,
-                Message = roleDTO.Id is null ? "" : "Insert successful",
-                StatusType = StatusType.Success,
-            };
         }
 
         public async Task DeleteRole(string key)
