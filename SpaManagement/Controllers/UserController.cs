@@ -8,9 +8,7 @@ using SpaManagement.DTOs;
 namespace SpaManagement.Controllers
 {
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UserController: ControllerBase
+    public class UserController: BaseController
     {
         UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;

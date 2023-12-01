@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using SpaManagement.Domain.Enums;
-using SpaManagement.Service;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PlanController : Controller
+
+    public class PlanController : BaseController
     {
         IPlanService _planService; 
         public PlanController(IPlanService planService)

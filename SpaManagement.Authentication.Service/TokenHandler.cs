@@ -29,7 +29,7 @@ namespace SpaManagement.Authentication.Service
 
         public async Task<(string, DateTime)> CreateAccessToken(ApplicationUser customer)
         {
-            DateTime expiredDateAccess = DateTime.Now.AddSeconds(5);
+            DateTime expiredDateAccess = DateTime.Now.AddMinutes(3);
 
             var roles = await _userManager.GetRolesAsync(customer);
 
@@ -49,7 +49,8 @@ namespace SpaManagement.Authentication.Service
 
             var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var tokenInfo = new JwtSecurityToken(
+
+                var tokenInfo = new JwtSecurityToken(
                 issuer: _configuration["TokenBear:Issuer"],
                 audience: _configuration["TokenBear:Issuer"],
                 claims: cliams,
@@ -57,10 +58,11 @@ namespace SpaManagement.Authentication.Service
                 expires: expiredDateAccess,
                 credential
                 );
+                string accessToken = new JwtSecurityTokenHandler().WriteToken(tokenInfo);
+                return await Task.FromResult((accessToken, expiredDateAccess));
 
-            string accessToken = new JwtSecurityTokenHandler().WriteToken(tokenInfo);
 
-            return await Task.FromResult((accessToken, expiredDateAccess));
+            
         }
 
         public async Task<(string, string, DateTime)> CreateRefreshToken(ApplicationUser customer)

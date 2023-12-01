@@ -1,17 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Data.Abstract;
-using SpaManagement.Domain.Enums;
 using SpaManagement.Domain.Helper;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ServicesController : Controller
+    public class ServicesController : BaseController
     {
         private readonly IServicesService _servicesService;
         private readonly IUnitOfWork _unitOfWork;

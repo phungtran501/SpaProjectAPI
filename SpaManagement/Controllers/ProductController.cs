@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpaManagement.Domain.Enums;
 using SpaManagement.Domain.Helper;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs.Product;
 
 namespace SpaManagement.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : Controller
+
+    public class ProductController : BaseController
+
     {
         private readonly IProductService _productService;
         private readonly IImageHandler _imageHandler;

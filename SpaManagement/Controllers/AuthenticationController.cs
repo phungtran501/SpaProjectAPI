@@ -6,22 +6,20 @@ using SpaManagement.Service.Abstracts;
 
 namespace SpaManagement.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseController
     {
         IUserService _customerService;
         ITokenHandler _tokenHandler;
-        IUserTokenService _userTokenService;
-        public AuthenticationController(IUserService customerService, ITokenHandler tokenHandler, IUserTokenService userTokenService)
+
+        public AuthenticationController(IUserService customerService, ITokenHandler tokenHandler)
         {
             _customerService = customerService;
             _tokenHandler = tokenHandler;
-            _userTokenService = userTokenService;
         }
-        [HttpPost("login")] //api/authentication/login
+
+        [HttpPost("login")] 
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody] AccountModel accountModel)  //{}, const user = { 'username': 'abc', password: '123'}
+        public async Task<IActionResult> Login([FromBody] AccountModel accountModel) 
         {
             if (accountModel is null)
             {
@@ -36,25 +34,10 @@ namespace SpaManagement.Controllers
             }
 
             (string accessToken, DateTime expiredDateAccess) = await _tokenHandler.CreateAccessToken(user);
-            //(string code, string refreshToken, DateTime expiredDateRefresh) = await _tokenHandler.CreateRefreshToken(user);
-
-            //await _userTokenService.SaveToken(new Domain.Entities.UserToken
-            //{
-            //    AccessToken = accessToken,
-            //    RefreshToken = refreshToken,
-            //    CodeRefreshToken = code,
-            //    ExpiredDateAccessToken = expiredDateAccess,
-            //    ExpiredDateRefreshToken = expiredDateRefresh,
-            //    CreatedToken = DateTime.Now,
-            //    UserId = user.Id
-            //});
 
             return Ok(new JwtModel
             {
-                AccessToken = accessToken,
-                Fullname = user.Fullname,
-                Username = user.UserName,
-                AccessTokenExpiredDate = expiredDateAccess.ToString("yyyy/MM/dd hh:mm:ss")
+                AccessToken = accessToken
             });
         }
 

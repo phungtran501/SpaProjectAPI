@@ -7,9 +7,8 @@ using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AccountController : Controller
+
+    public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;

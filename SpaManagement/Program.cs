@@ -50,8 +50,8 @@ app.UseCors(x => x
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseAuthentication();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

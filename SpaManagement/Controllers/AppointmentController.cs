@@ -5,9 +5,8 @@ using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AppointmentController : Controller
+
+    public class AppointmentController : BaseController
     {
         private readonly IAppointmentService _appointmentService;
 
@@ -45,7 +44,7 @@ namespace SpaManagement.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _appointmentService.DeleteAppointment(id);
-            return Json(true);
+            return Ok(true);
         }
     }
 }

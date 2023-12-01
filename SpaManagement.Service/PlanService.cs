@@ -129,7 +129,6 @@ namespace SpaManagement.Service
                 Message = planDTO.Id is null ? "Insert successful" : "Update successful",
                 StatusType = StatusType.Success,
             };
-
         }
 
         public async Task<PlanDTO> GetPlanById(int id)

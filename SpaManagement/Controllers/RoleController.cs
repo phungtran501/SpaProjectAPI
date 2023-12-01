@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpaManagement.Domain.Enums;
-using SpaManagement.Service;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
 namespace SpaManagement.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RoleController : ControllerBase
+
+    public class RoleController : BaseController
     {
         private readonly IRoleService _roleService;
 
