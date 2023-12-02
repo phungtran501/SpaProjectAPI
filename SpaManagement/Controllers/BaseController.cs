@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SpaManagement.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     [Authorize]
+    [Route("api/[controller]")] 
+    [ApiController]
     public class BaseController : ControllerBase
     {
 

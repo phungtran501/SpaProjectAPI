@@ -132,7 +132,6 @@ namespace SpaManagement.Service
                 StatusType = StatusType.Success,
                 Data = maxId,
             };
-
         }
 
         public async Task DeleteProduct(int productId)
@@ -155,7 +154,6 @@ namespace SpaManagement.Service
             });
 
             return result;
-
         }
 
         public async Task<IEnumerable<ProductDTO>> GetRandomProduct()
@@ -173,7 +171,6 @@ namespace SpaManagement.Service
             var radomProduct = products.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
 
             return radomProduct;
-
         }
 
         public async Task<ProductResponse> AllProductPagination(int pageIndex = 1, int pageSize = 12)
@@ -205,14 +202,14 @@ namespace SpaManagement.Service
 
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetProducts()
+        public async Task<IEnumerable<SelectModel>> GetDropdownlistProducts()
         {
             var products = await _unitOfWork.ProductRepository.GetData(x => x.IsActive);
 
-            var result = products.Select(x => new ProductDTO
+            var result = products.Select(x => new SelectModel
             {
                 
-                Id = x.Id,
+                Id = x.Id.ToString(),
                 Name = x.Name,
             }).ToList();
 

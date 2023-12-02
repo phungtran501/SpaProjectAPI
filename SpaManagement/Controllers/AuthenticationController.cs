@@ -30,7 +30,7 @@ namespace SpaManagement.Controllers
 
             if (user is null)
             {
-                return NotFound();
+                return BadRequest("User or password is incorrect");
             }
 
             (string accessToken, DateTime expiredDateAccess) = await _tokenHandler.CreateAccessToken(user);

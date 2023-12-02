@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Domain.Helper;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs.Product;
@@ -65,6 +66,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("random-product")]
+        [AllowAnonymous]
         public async Task<IActionResult> RandomProduct()
         {
             var products = await _productService.GetRandomProduct();
@@ -73,6 +75,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("all-product")]
+        [AllowAnonymous]
         public async Task<IActionResult> AllProduct(int pageIndex, int pageSize = 12)
         {
             var products = await _productService.AllProductPagination(pageIndex, pageSize);
@@ -80,10 +83,10 @@ namespace SpaManagement.Controllers
             return Ok(products);
         }
 
-        [HttpGet("get-products")]
+        [HttpGet("get-dropdownlist-products")]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await _productService.GetProducts();
+            var products = await _productService.GetDropdownlistProducts();
 
             return Ok(products);
         }

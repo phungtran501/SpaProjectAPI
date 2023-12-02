@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Helper;
 using SpaManagement.Service.Abstracts;
@@ -70,6 +71,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("get-services")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetServices()
         {
             var services = await _servicesService.GetServices();

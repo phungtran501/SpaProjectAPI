@@ -29,7 +29,7 @@ namespace SpaManagement.Authentication.Service
 
         public async Task<(string, DateTime)> CreateAccessToken(ApplicationUser customer)
         {
-            DateTime expiredDateAccess = DateTime.Now.AddMinutes(3);
+            DateTime expiredDateAccess = DateTime.Now.AddHours(3);
 
             var roles = await _userManager.GetRolesAsync(customer);
 
