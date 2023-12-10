@@ -53,7 +53,7 @@ namespace SpaManagement.Service
             return data;
         }
 
-       public async Task<AccountDTO> GetAccountById(string userId)
+        public async Task<AccountDTO> GetAccountById(string userId)
         {
             var account = await _userManager.FindByIdAsync(userId);
 
@@ -107,7 +107,7 @@ namespace SpaManagement.Service
                         Status = true,
                         Message = "Insert successful",
                         StatusType = StatusType.Success,
-            
+
                     };
                 }
                 else
@@ -184,7 +184,7 @@ namespace SpaManagement.Service
             {
                 Id = x.Id,
                 Username = x.UserName,
-                
+
             });
 
             return result;

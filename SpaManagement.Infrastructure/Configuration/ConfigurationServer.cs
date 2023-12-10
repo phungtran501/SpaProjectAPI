@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,17 @@ namespace SpaManagement.Infrastructure.Configuration
 {
     public static class ConfigurationServer
     {
+
+        public static async Task AddMigrationAsync(this WebApplication webApplication)
+        {
+            //using (var scope = webApplication.Services.CreateScope())
+            //{
+            //    var appContext = scope.ServiceProvider.GetRequiredService<SpaManagementContext>();
+
+            //   // await appContext.Database.MigrateAsync();
+            //}
+        }
+
         public static void RegisterContextDb(this IServiceCollection service, IConfiguration configaration)
         {
             service.AddDbContext<SpaManagementContext>(options => options

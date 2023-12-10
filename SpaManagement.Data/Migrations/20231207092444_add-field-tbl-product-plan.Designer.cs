@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaManagement.Data;
 
@@ -11,9 +12,11 @@ using SpaManagement.Data;
 namespace SpaManagement.Data.Migrations
 {
     [DbContext(typeof(SpaManagementContext))]
-    partial class SpaManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20231207092444_add-field-tbl-product-plan")]
+    partial class addfieldtblproductplan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,15 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "debef7e9-baaa-4767-986c-100e223ea8da",
-                            ConcurrencyStamp = "86a882e8-fb71-4f51-a545-8e6364f4be14",
+                            Id = "789bb0ac-ef9f-426e-9bcf-fa82aa44efc9",
+                            ConcurrencyStamp = "a1292fcc-51b9-47b2-94ab-ed78a7e88b21",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "aa76e9c0-3e44-41d1-91b3-dede378e7109",
-                            ConcurrencyStamp = "5d58867a-5142-4706-a443-aa96c8482204",
+                            Id = "560ebfbb-4730-42e7-abf1-3574a86e0074",
+                            ConcurrencyStamp = "266a4b28-ee12-4a1c-9e53-fc09c2e31b0d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -154,8 +157,8 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8998d78e-fb6b-4328-ab30-13bb9e9d91a7",
-                            RoleId = "debef7e9-baaa-4767-986c-100e223ea8da"
+                            UserId = "f2cdfc76-b716-44a6-a537-fbc51bbce2c1",
+                            RoleId = "789bb0ac-ef9f-426e-9bcf-fa82aa44efc9"
                         });
                 });
 
@@ -259,9 +262,9 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8998d78e-fb6b-4328-ab30-13bb9e9d91a7",
+                            Id = "f2cdfc76-b716-44a6-a537-fbc51bbce2c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1a9646e-6d60-4e10-850c-d10ac723f4ce",
+                            ConcurrencyStamp = "3b24bd24-d795-4d6f-a9cf-5a8a5c84ad19",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             IsActive = false,
@@ -269,9 +272,9 @@ namespace SpaManagement.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAes4uCXJyOae7X8dpmblr+9qRE7OuIPTxnbECDqgEXreEn8sHxMR0XyWKpYKkx4YA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKcw1aD1vIaFVMj2AicnBU/xxzdhJI91GtZgM8B45L7HB50vpqap/FriZ6dxRQAJSg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a40d1b49-4a3b-49b1-8d73-eaa137d78c8f",
+                            SecurityStamp = "45aeaca3-1e12-4b8d-a75e-dcc0ebd1f336",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -284,9 +287,6 @@ namespace SpaManagement.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AppointmentDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -310,40 +310,6 @@ namespace SpaManagement.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Appointment");
-                });
-
-            modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AppointmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fullname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.ToTable("AppointmentAddress");
                 });
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentPlanDetail", b =>
@@ -632,17 +598,6 @@ namespace SpaManagement.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentAddress", b =>
-                {
-                    b.HasOne("SpaManagement.Domain.Entities.Appointment", "Appointment")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Appointment");
                 });
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentPlanDetail", b =>

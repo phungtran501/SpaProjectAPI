@@ -16,5 +16,7 @@ namespace SpaManagement.Domain.Entities
         public int ServicesId { get; set; }
         [ForeignKey(nameof(ServicesId))]
         public Services Services { get; set; }
+
+        public string Code { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaManagement.Data;
 
@@ -11,9 +12,11 @@ using SpaManagement.Data;
 namespace SpaManagement.Data.Migrations
 {
     [DbContext(typeof(SpaManagementContext))]
-    partial class SpaManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20231207101059_add-field-appointmentdate-tbl-appointment")]
+    partial class addfieldappointmentdatetblappointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,15 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "debef7e9-baaa-4767-986c-100e223ea8da",
-                            ConcurrencyStamp = "86a882e8-fb71-4f51-a545-8e6364f4be14",
+                            Id = "34c914f3-19f7-404c-9fec-3d90a83a7fc0",
+                            ConcurrencyStamp = "8bd23c96-8faf-4f6a-9d7a-0b0ee4b2b91a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "aa76e9c0-3e44-41d1-91b3-dede378e7109",
-                            ConcurrencyStamp = "5d58867a-5142-4706-a443-aa96c8482204",
+                            Id = "6df8a4d2-43e2-4b3a-ba18-62bdf59d17f0",
+                            ConcurrencyStamp = "0ed2fdf1-b2d5-4fd0-bd6d-acac90f79ea3",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -154,8 +157,8 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8998d78e-fb6b-4328-ab30-13bb9e9d91a7",
-                            RoleId = "debef7e9-baaa-4767-986c-100e223ea8da"
+                            UserId = "c35de0bc-f345-4053-b4ce-eed81d02a877",
+                            RoleId = "34c914f3-19f7-404c-9fec-3d90a83a7fc0"
                         });
                 });
 
@@ -259,9 +262,9 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8998d78e-fb6b-4328-ab30-13bb9e9d91a7",
+                            Id = "c35de0bc-f345-4053-b4ce-eed81d02a877",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1a9646e-6d60-4e10-850c-d10ac723f4ce",
+                            ConcurrencyStamp = "3905f76e-bd0d-40c3-9249-f9b9bc404214",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             IsActive = false,
@@ -269,9 +272,9 @@ namespace SpaManagement.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAes4uCXJyOae7X8dpmblr+9qRE7OuIPTxnbECDqgEXreEn8sHxMR0XyWKpYKkx4YA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENmOy1P3YHoHPYLtblPe8r5ORAsd448taYZ8gBgcdfhQSVRXcHh5wdbHlrt1PPIWjA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a40d1b49-4a3b-49b1-8d73-eaa137d78c8f",
+                            SecurityStamp = "2c1a49b4-b695-4d45-8a41-fdd6c15076b5",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

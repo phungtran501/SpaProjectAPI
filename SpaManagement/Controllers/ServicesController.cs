@@ -35,6 +35,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("{id}/detail")]
+        [AllowAnonymous]
         public async Task<IActionResult> InsertUpdate(int id)
         {
 

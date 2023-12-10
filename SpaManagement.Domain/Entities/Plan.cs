@@ -12,5 +12,8 @@ namespace SpaManagement.Domain.Entities
 
         public double Price { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        [StringLength(2000)]
+        public string URLName { get; set; }
     }
 }

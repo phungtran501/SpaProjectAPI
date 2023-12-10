@@ -30,6 +30,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("{id}/detail")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetProductDetail(int id)
         {
 
@@ -57,6 +58,7 @@ namespace SpaManagement.Controllers
         }
 
         [HttpGet("product-by-service")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetProductByService(int id)
         {
 

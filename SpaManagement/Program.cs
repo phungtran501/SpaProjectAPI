@@ -34,6 +34,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.AddMigrationAsync().GetAwaiter().GetResult();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

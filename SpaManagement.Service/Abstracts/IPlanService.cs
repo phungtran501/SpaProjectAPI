@@ -9,5 +9,6 @@ namespace SpaManagement.Service.Abstracts
         Task DeletePlan(int key);
         Task<PlanDTO> GetPlanById(int id);
         Task<ResponseModel> CreateUpdate(PlanDTO planDTO);
+        Task<IEnumerable<ProductByPlanDTO>> GetPlanDetail();
     }
 }

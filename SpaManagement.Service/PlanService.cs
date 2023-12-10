@@ -1,4 +1,5 @@
-﻿using SpaManagement.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 using SpaManagement.Domain.Enums;
 using SpaManagement.Service.Abstracts;
@@ -162,6 +163,47 @@ namespace SpaManagement.Service
             plan.IsActive = false;
             _unitOfWork.PlanRepository.Update(plan);
             await _unitOfWork.PlanRepository.Commit();
+        }
+
+        public async Task<IEnumerable<ProductByPlanDTO>> GetPlanDetail()
+        {
+            List<ProductByPlanDTO> productByPlanDTOs = new ();
+
+            var lsPlan = (await _unitOfWork.PlanRepository.GetData(x => x.IsActive)).Select(x => new
+            {
+                PlanId = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+            }).ToList();
+
+            var lsProduct = await _unitOfWork.PlanDetailRepository.Table.Join(_unitOfWork.ProductRepository.Table, x => x.ProductId,
+                                                                                                                    y => y.Id,
+                                                                                                                    (detail, product) => new
+                                                                                                                    {
+                                                                                                                        PlanId = detail.PlanId,
+                                                                                                                        ProductName = product.Name,
+
+                                                                                                                    }).ToListAsync();
+            foreach (var item in lsPlan)
+            {
+                ProductByPlanDTO productByPlanDTO = new();
+
+                productByPlanDTO.Id = item.PlanId;
+                productByPlanDTO.PlanName = item.Name;
+                productByPlanDTO.Price = item.Price;
+                
+
+                var product = lsProduct.Where(x => x.PlanId == item.PlanId).Select(x => new PlanProduct
+                {
+                    ProductName = x.ProductName
+                }).ToList();
+
+                productByPlanDTO.Product = product;
+
+                productByPlanDTOs.Add(productByPlanDTO);
+            }
+
+            return productByPlanDTOs;
         }
     }
 }

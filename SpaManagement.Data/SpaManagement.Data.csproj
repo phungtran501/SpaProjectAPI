@@ -25,16 +25,4 @@
     <ProjectReference Include="..\SpaManagement.Domain\SpaManagement.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Sql\GetAllProducts.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sql\GetAllUsers.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sql\GetAllAppointment.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

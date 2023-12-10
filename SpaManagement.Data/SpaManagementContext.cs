@@ -25,6 +25,7 @@ namespace SpaManagement.Data
         public DbSet<Product> Product { get; set; }
         public DbSet<Services> Services { get; set; }
         public DbSet<UserToken> UserToken { get; set; }
+        public DbSet<AppointmentAddress> AppointmentAddress { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,7 +41,7 @@ namespace SpaManagement.Data
             SeedData(modelBuilder);
         }
 
-        private void SeedData(ModelBuilder modelBuilder)
+        private async void SeedData(ModelBuilder modelBuilder)
         {
             string defaultName = "Admin";
             string defaultEmail = "admin@gmail.com";
@@ -74,29 +75,31 @@ namespace SpaManagement.Data
 
             string userId = Guid.NewGuid().ToString();
 
+
             modelBuilder.Entity<ApplicationUser>().HasData(
-                new ApplicationUser
+            new ApplicationUser
+            {
+                Id = userId,
+                UserName = defaultName.ToLower(),
+                NormalizedUserName = defaultName.ToUpper(),
+                Email = defaultEmail,
+                NormalizedEmail = defaultEmail.ToUpper(),
+                AccessFailedCount = 0,
+                PasswordHash = passwordHasherService.HashPassword(new ApplicationUser
                 {
-                    Id = userId,
-                    UserName = defaultName.ToLower(),
+                    UserName = defaultName,
                     NormalizedUserName = defaultName.ToUpper(),
                     Email = defaultEmail,
-                    NormalizedEmail = defaultEmail.ToUpper(),              
-                    AccessFailedCount = 0,
-                    PasswordHash = passwordHasherService.HashPassword(new ApplicationUser
-                    {
-                        UserName = defaultName,
-                        NormalizedUserName = defaultName.ToUpper(),
-                        Email = defaultEmail,
-                        NormalizedEmail = defaultEmail.ToUpper(),
-                    }, password)
-                });
+                    NormalizedEmail = defaultEmail.ToUpper(),
+                }, password)
+            });
 
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 RoleId = roleId,
                 UserId = userId,
             });
+            
 
             
         }

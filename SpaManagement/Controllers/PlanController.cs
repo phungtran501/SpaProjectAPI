@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpaManagement.Service.Abstracts;
 using SpaManagement.Service.DTOs;
 
@@ -42,6 +43,15 @@ namespace SpaManagement.Controllers
         {
             await _planService.DeletePlan(id);
             return Ok(true);
+        }
+
+        [HttpGet("get-plan-detail")]
+        [AllowAnonymous]
+        public async Task<IActionResult> PlanDetail()
+        {
+            var plans = await _planService.GetPlanDetail();
+
+            return Ok(plans);
         }
     }
 }
