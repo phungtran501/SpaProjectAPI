@@ -64,8 +64,10 @@ namespace SpaManagement.Infrastructure.Configuration
             service.AddTransient<IRoleService, RoleService>();
             service.AddTransient<IProductService, ProductService>(); //Dependency Injection
             service.AddTransient<IAppointmentService, AppointmentService>();
-            service.AddTransient<IImageHandler, ImageHandler>();
-
+            service.AddTransient<IImageHandler, ImageHandler>(); 
+            service.AddTransient<ICartService, CartService>();
+            service.AddTransient<IAddressService, AddressService>();
+            service.AddTransient<IOrderService, OrderService>();
         }
         
     }

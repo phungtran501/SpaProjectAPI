@@ -12,19 +12,7 @@ namespace SpaManagement.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Appointment_Customer_CustomerId",
-                table: "Appointment");
 
-            migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.DropTable(
-                name: "Employee");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Appointment_CustomerId",
-                table: "Appointment");
 
             migrationBuilder.DeleteData(
                 table: "Role",
@@ -46,9 +34,6 @@ namespace SpaManagement.Data.Migrations
                 keyColumn: "Id",
                 keyValue: "97d131a6-d929-40e4-8736-08f41ef6100d");
 
-            migrationBuilder.DropColumn(
-                name: "CustomerId",
-                table: "Appointment");
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId",
@@ -89,32 +74,11 @@ namespace SpaManagement.Data.Migrations
                 table: "UserRole",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "e368ff13-09f5-4c53-9e96-26cc2ae06521", "c235e437-15a4-4985-a59c-93507827f184" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointment_UserId",
-                table: "Appointment",
-                column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Appointment_ApplicationUser_UserId",
-                table: "Appointment",
-                column: "UserId",
-                principalTable: "ApplicationUser",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Appointment_ApplicationUser_UserId",
-                table: "Appointment");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Appointment_UserId",
-                table: "Appointment");
-
             migrationBuilder.DeleteData(
                 table: "Role",
                 keyColumn: "Id",
@@ -147,50 +111,6 @@ namespace SpaManagement.Data.Migrations
                 name: "IsSystem",
                 table: "ApplicationUser");
 
-            migrationBuilder.AddColumn<int>(
-                name: "CustomerId",
-                table: "Appointment",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.CreateTable(
-                name: "Customer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsSystem = table.Column<bool>(type: "bit", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
-                });
-
             migrationBuilder.InsertData(
                 table: "ApplicationUser",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Fullname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
@@ -210,18 +130,9 @@ namespace SpaManagement.Data.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "97d131a6-d929-40e4-8736-08f41ef6100d", "0a3526dc-1fc2-4860-a078-67cdf725b28b" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointment_CustomerId",
-                table: "Appointment",
-                column: "CustomerId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Appointment_Customer_CustomerId",
-                table: "Appointment",
-                column: "CustomerId",
-                principalTable: "Customer",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+
+
         }
     }
 }

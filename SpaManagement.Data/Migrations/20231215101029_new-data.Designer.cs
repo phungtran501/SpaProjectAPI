@@ -12,8 +12,8 @@ using SpaManagement.Data;
 namespace SpaManagement.Data.Migrations
 {
     [DbContext(typeof(SpaManagementContext))]
-    [Migration("20231207092444_add-field-tbl-product-plan")]
-    partial class addfieldtblproductplan
+    [Migration("20231215101029_new-data")]
+    partial class newdata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,15 +54,15 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "789bb0ac-ef9f-426e-9bcf-fa82aa44efc9",
-                            ConcurrencyStamp = "a1292fcc-51b9-47b2-94ab-ed78a7e88b21",
+                            Id = "05c1293b-6774-4e53-96fe-09615ea087f2",
+                            ConcurrencyStamp = "f4c4fbbc-ff1c-4a9e-8f74-843080943d85",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "560ebfbb-4730-42e7-abf1-3574a86e0074",
-                            ConcurrencyStamp = "266a4b28-ee12-4a1c-9e53-fc09c2e31b0d",
+                            Id = "3c884f87-9e96-4919-83b7-cb7e7bc21713",
+                            ConcurrencyStamp = "a2cb1aa4-fb2e-4e97-af7b-13223c7ad1f3",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -157,8 +157,8 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f2cdfc76-b716-44a6-a537-fbc51bbce2c1",
-                            RoleId = "789bb0ac-ef9f-426e-9bcf-fa82aa44efc9"
+                            UserId = "83b92dc5-c56b-49ec-b8f9-ae9809c97b70",
+                            RoleId = "05c1293b-6774-4e53-96fe-09615ea087f2"
                         });
                 });
 
@@ -262,9 +262,9 @@ namespace SpaManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f2cdfc76-b716-44a6-a537-fbc51bbce2c1",
+                            Id = "83b92dc5-c56b-49ec-b8f9-ae9809c97b70",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b24bd24-d795-4d6f-a9cf-5a8a5c84ad19",
+                            ConcurrencyStamp = "587fd7a5-226d-4d0a-a222-fef91776485c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             IsActive = false,
@@ -272,9 +272,9 @@ namespace SpaManagement.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKcw1aD1vIaFVMj2AicnBU/xxzdhJI91GtZgM8B45L7HB50vpqap/FriZ6dxRQAJSg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEvTErJ4lVn9MUMnMyqVUIo2I+FeCq8a5Gqa2KS8Zv/I3yApBiSkcMGNQA9mcENgfA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "45aeaca3-1e12-4b8d-a75e-dcc0ebd1f336",
+                            SecurityStamp = "7118ae6c-9934-46dd-a8a7-cf3c46b45edc",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -288,6 +288,12 @@ namespace SpaManagement.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -298,8 +304,35 @@ namespace SpaManagement.Data.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("Status")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Appointment");
+                });
+
+            modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -309,7 +342,7 @@ namespace SpaManagement.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Appointment");
+                    b.ToTable("AppointmentAddress");
                 });
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentPlanDetail", b =>
@@ -349,23 +382,18 @@ namespace SpaManagement.Data.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Available")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("AppointmentProductDetail");
                 });
@@ -591,6 +619,17 @@ namespace SpaManagement.Data.Migrations
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.Appointment", b =>
                 {
+                    b.HasOne("SpaManagement.Domain.Entities.AppointmentAddress", "AppointmentAddress")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppointmentAddress");
+                });
+
+            modelBuilder.Entity("SpaManagement.Domain.Entities.AppointmentAddress", b =>
+                {
                     b.HasOne("SpaManagement.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -627,15 +666,7 @@ namespace SpaManagement.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpaManagement.Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Appointment");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("SpaManagement.Domain.Entities.PlanDetail", b =>

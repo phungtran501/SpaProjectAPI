@@ -1,4 +1,5 @@
-﻿using SpaManagement.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SpaManagement.Data.Abstract;
 using SpaManagement.Domain.Entities;
 
 namespace SpaManagement.Data
@@ -10,12 +11,14 @@ namespace SpaManagement.Data
         Repository<Appointment> _repositoryAppointment;
         Repository<AppointmentPlanDetail> _repositoryAppointmentPlanDetail;
         Repository<AppointmentProductDetail> _repositoryAppointmentProductDetail;
+        Repository<AppointmentAddress> _repositoryAppointmentAddress;
         Repository<Plan> _repositoryPlan;
         Repository<PlanDetail> _repositoryPlanDetail;
         Repository<Product> _repositoryProduct;
         Repository<Services> _repositoryServices;
         Repository<UserToken> _repositoryUserToken;
         private bool disposedValue;
+        private IDbContextTransaction _dbContextTransaction;
 
         public UnitOfWork(SpaManagementContext spaManagementContext)
         {
@@ -37,7 +40,22 @@ namespace SpaManagement.Data
         public Repository<Services> ServicesRepository => _repositoryServices ??= new Repository<Services>(_spaManagementContext);
 
         public Repository<UserToken> UserTokenRepository => _repositoryUserToken ??= new Repository<UserToken>(_spaManagementContext);
+        public Repository<AppointmentAddress> AppointmentAddressRepository => _repositoryAppointmentAddress ??= new Repository<AppointmentAddress>(_spaManagementContext);
 
+        public async Task BeginTransactionAsync()
+        {
+            _dbContextTransaction = await _spaManagementContext.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransactionAsync()
+        {
+            await _dbContextTransaction?.CommitAsync();
+        }
+
+        public async Task RollbackTransactionAsync()
+        {
+            await _dbContextTransaction?.RollbackAsync();
+        }
         public async Task CommitAsync()
         {
             await _spaManagementContext.SaveChangesAsync();

@@ -17,8 +17,8 @@ namespace SpaManagement.Controllers
             _tokenHandler = tokenHandler;
         }
 
-        [HttpPost("login")] 
-        [AllowAnonymous]
+        [HttpPost("login")]
+        [AllowAnonymous] 
         public async Task<IActionResult> Login([FromBody] AccountModel accountModel) 
         {
             if (accountModel is null)

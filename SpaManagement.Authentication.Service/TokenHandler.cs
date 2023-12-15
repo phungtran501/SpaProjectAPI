@@ -33,21 +33,23 @@ namespace SpaManagement.Authentication.Service
 
             var roles = await _userManager.GetRolesAsync(customer);
 
-            var cliams = new Claim[]
+            try
+            {
+                var cliams = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString(), ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
                 new Claim(JwtRegisteredClaimNames.Iss, _configuration["TokenBear:Issuer"], ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToString(), ClaimValueTypes.DateTime, _configuration["TokenBear:Issuer"]),
-                new Claim(JwtRegisteredClaimNames.Aud, "RestaurantManagement", ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
+                new Claim(JwtRegisteredClaimNames.Aud, "SpaManagement", ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
                 new Claim(JwtRegisteredClaimNames.Exp, expiredDateAccess.ToString("yyyy/MM/dd hh:mm:ss"), ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
                 //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(), ClaimValueTypes.String, _configuration["TokenBear: Issuer"]),
                 new Claim(ClaimTypes.Name, customer.Fullname, ClaimValueTypes.String, _configuration["TokenBear:Issuer"]),
                 new Claim("Username", customer.UserName, ClaimValueTypes.String, _configuration["TokenBear:Issuer"])
             }.Union(roles.Select(x => new Claim(ClaimTypes.Role, x)));
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["TokenBear:SignatureKey"]));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["TokenBear:SignatureKey"]));
 
-            var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
 
                 var tokenInfo = new JwtSecurityToken(
@@ -60,6 +62,14 @@ namespace SpaManagement.Authentication.Service
                 );
                 string accessToken = new JwtSecurityTokenHandler().WriteToken(tokenInfo);
                 return await Task.FromResult((accessToken, expiredDateAccess));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            
 
 
             

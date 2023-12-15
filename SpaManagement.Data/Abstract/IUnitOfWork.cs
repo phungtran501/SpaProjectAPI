@@ -12,8 +12,12 @@ namespace SpaManagement.Data.Abstract
         Repository<Product> ProductRepository { get; }
         Repository<Services> ServicesRepository { get; }
         Repository<UserToken> UserTokenRepository { get; }
+        Repository<AppointmentAddress> AppointmentAddressRepository { get; }
 
+        Task BeginTransactionAsync();
         Task CommitAsync();
+        Task CommitTransactionAsync();
         void Dispose();
+        Task RollbackTransactionAsync();
     }
 }

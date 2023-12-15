@@ -55,9 +55,9 @@ namespace SpaManagement.Service
             return new AppoinmentRequestDTO
                 {
                     Id = appointment.Id,
-                    UserId = appointment.UserId,
+                    UserId = appointment.AddressId,
                     Note = appointment.Note,
-                    Status = appointment.Status,
+                    Status = (short)appointment.Status,
                 };
         }
 
@@ -65,8 +65,8 @@ namespace SpaManagement.Service
         {
             switch (status)
             {
-                case (short)StatusAppointment.Confirmed:
-                    return nameof(StatusAppointment.Confirmed);
+                case (short)StatusAppointment.New:
+                    return nameof(StatusAppointment.New);
                 case (short)StatusAppointment.Completed: 
                     return nameof(StatusAppointment.Completed);
                 case (short)StatusAppointment.Cancelled: 
@@ -83,10 +83,10 @@ namespace SpaManagement.Service
             {
                 var app = new Appointment
                 {
-                    UserId = appoinmentRequestDTO.UserId,
-                    CreatedOn = DateTime.Now,
+                    //UserId = appoinmentRequestDTO.UserId,
+                    //CreatedOn = DateTime.Now,
                     Note = appoinmentRequestDTO.Note,
-                    Status = appoinmentRequestDTO.Status,
+                    Status = (StatusAppointment)appoinmentRequestDTO.Status,
                 };
                 var result = _unitOfWork.AppointmentRepository.Insert(app);
 
@@ -96,9 +96,9 @@ namespace SpaManagement.Service
             {
                 var app = await _unitOfWork.AppointmentRepository.GetById(appoinmentRequestDTO.Id);
 
-                app.UserId = appoinmentRequestDTO.UserId;
+                //app.UserId = appoinmentRequestDTO.UserId;
                 app.Note = appoinmentRequestDTO.Note;
-                app.Status = appoinmentRequestDTO.Status;
+                app.Status = (StatusAppointment)appoinmentRequestDTO.Status;
                 app.CreatedOn = DateTime.Now;
 
                 _unitOfWork.AppointmentRepository.Update(app);
